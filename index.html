@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasarla Lokesh | Java Developer & AI Enthusiast</title>
+    
+    <!-- Meta Tags for SEO and Social Sharing -->
+    <meta name="description" content="Portfolio of Dasarla Lokesh, a final-year Computer Science student specializing in Java Development and AI/ML.">
+    <meta name="keywords" content="Dasarla Lokesh, Java Developer, AI, ML, Portfolio, Web Developer, Spring Boot, React, Python, Computer Networks, DBMS, OS">
+    <meta name="author" content="Dasarla Lokesh">
+    <meta property="og:title" content="Dasarla Lokesh | Portfolio">
+    <meta property="og:description" content="A portfolio showcasing the projects and skills of Dasarla Lokesh.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0A192F/FFFFFF?text=Lokesh">
+    <meta property="og:url" content="https://lokeshdasarla.github.io/personalwebsite">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles and Animations -->
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Particle.js Background Container */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation Active State */
+        nav a.active {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+        
+        /* Project Card Tilt Effect */
+        .project-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        .project-card:hover {
+            transform: rotateY(5deg) rotateX(10deg) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Skill Tooltip */
+        .skill-item .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .skill-item:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Company Logo Grayscale Effect */
+        .company-logo {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        .company-logo:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Footer Icon Glow Effect */
+        footer a:hover {
+            color: #38bdf8;
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.7);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A192F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-black/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold tracking-wider hover:text-sky-400 transition-colors">Lokesh</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#hero" class="nav-link hover:text-sky-400 transition-colors">Home</a>
+                <a href="#about" class="nav-link hover:text-sky-400 transition-colors">About</a>
+                <a href="#skills" class="nav-link hover:text-sky-400 transition-colors">Skills</a>
+                <a href="#projects" class="nav-link hover:text-sky-400 transition-colors">Projects</a>
+                <a href="#experience" class="nav-link hover:text-sky-400 transition-colors">Experience</a>
+                <a href="#contact" class="nav-link hover:text-sky-400 transition-colors">Contact</a>
+            </nav>
+            <button id="mobile-menu-btn" class="md:hidden z-50">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-0 left-0 w-full h-screen bg-black/95">
+            <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
+                <a href="#hero" class="nav-link mobile-nav-link">Home</a>
+                <a href="#about" class="nav-link mobile-nav-link">About</a>
+                <a href="#skills" class="nav-link mobile-nav-link">Skills</a>
+                <a href="#projects" class="nav-link mobile-nav-link">Projects</a>
+                <a href="#experience" class="nav-link mobile-nav-link">Experience</a>
+                <a href="#contact" class="nav-link mobile-nav-link">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center bg-[#0A192F] text-center p-6 overflow-hidden">
+            <div id="particles-js"></div>
+            <div class="hero-content max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4">Dasarla Lokesh</h1>
+                <h2 id="typewriter" class="text-xl md:text-2xl lg:text-3xl text-sky-300 font-semibold mb-8 h-10"></h2>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://drive.google.com/file/d/1yIrxgflGaqwe2hr3L1pQtOnQBGnEtE_C/view?usp=drive_link" class="action-btn flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                        Download Resume
+                    </a>
+                    <a href="#contact" class="action-btn flex items-center gap-2 bg-transparent border-2 border-white hover:bg-white hover:text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                        Hire Me
+                    </a>
+                    <a href="#projects" class="action-btn bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">View Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20 md:py-32 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold">About Me</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mt-4"></div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <img src="C:\Users\DASARLA LOKESH\OneDrive\Documents\Projects\website\imge.jpg"alt="Dasarla Lokesh" class="rounded-lg shadow-lg mx-auto w-2/3 md:w-full">
+                    </div>
+                    <div class="reveal">
+                        <p class="text-lg text-gray-300 mb-6">
+                            I'm a dedicated and results-oriented final-year Computer Science student with a passion for building robust backend systems and intelligent applications. With strong expertise in Java and Python, I enjoy tackling real-world problems, optimizing performance, and contributing to innovative tech solutions.
+                        </p>
+                        <p class="text-lg text-gray-300 mb-8">
+                            I thrive in collaborative environments, am committed to writing clean, efficient code, and am always eager to learn and adapt to new technologies.
+                        </p>
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div>
+                                <p class="text-3xl font-bold text-sky-400">4+</p>
+                                <p class="text-gray-400">Projects Completed</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-bold text-sky-400">2</p>
+                                <p class="text-gray-400">Internships</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-bold text-sky-400">8+</p>
+                                <p class="text-gray-400">Certifications</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32 bg-[#0A192F]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold">Tech Stack</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mt-4"></div>
+                </div>
+                <div class="space-y-12">
+                    <div class="reveal">
+                        <h3 class="text-2xl font-semibold mb-6 text-center text-sky-300">Programming & Markup</h3>
+                        <div class="flex justify-center flex-wrap gap-6 md:gap-8">
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Java</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Python</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">C++</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">JavaScript</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">HTML</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">CSS</span></div>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <h3 class="text-2xl font-semibold mb-6 text-center text-sky-300">Frameworks & Libraries</h3>
+                        <div class="flex justify-center flex-wrap gap-6 md:gap-8">
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Spring Boot</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">React</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">NumPy</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Pandas</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">TensorFlow</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Scikit-learn</span></div>
+                            <div class="skill-item text-center relative">
+                                 <img src="https://placehold.co/80x80/0A192F/FFFFFF?text=Seaborn" class="h-16 w-16 md:h-20 md:w-20 mx-auto rounded-lg"/>
+                                 <span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Seaborn</span>
+                             </div>
+                             <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Matplotlib</span></div>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <h3 class="text-2xl font-semibold mb-6 text-center text-sky-300">Databases & Tools</h3>
+                        <div class="flex justify-center flex-wrap gap-6 md:gap-8">
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">MySQL</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">MongoDB</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Git</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Linux</span></div>
+                            <div class="skill-item text-center relative"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-plain.svg" class="h-16 w-16 md:h-20 md:w-20 mx-auto"/><span class="tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Firebase</span></div>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <h3 class="text-2xl font-semibold mb-6 text-center text-sky-300">Core Concepts</h3>
+                        <div class="flex justify-center flex-wrap gap-6 md:gap-8">
+                            <div class="skill-item text-center relative p-2 bg-black rounded-lg"><p class="font-bold text-lg">DSA</p><span class="tooltip absolute -bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Data Structures & Algorithms</span></div>
+                            <div class="skill-item text-center relative p-2 bg-black rounded-lg"><p class="font-bold text-lg">OS</p><span class="tooltip absolute -bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Operating Systems</span></div>
+                            <div class="skill-item text-center relative p-2 bg-black rounded-lg"><p class="font-bold text-lg">DBMS</p><span class="tooltip absolute -bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Database Management</span></div>
+                            <div class="skill-item text-center relative p-2 bg-black rounded-lg"><p class="font-bold text-lg">CN</p><span class="tooltip absolute -bottom-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-3 py-1 rounded-md">Computer Networks</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold">My Projects</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mt-4"></div>
+                </div>
+                <!-- Project Filters -->
+                <div class="flex justify-center flex-wrap gap-4 mb-12 reveal">
+                    <button class="filter-btn active px-4 py-2 rounded-md bg-sky-600" data-filter="all">All</button>
+                    <button class="filter-btn px-4 py-2 rounded-md bg-gray-800 hover:bg-sky-600 transition" data-filter="web">Web</button>
+                    <button class="filter-btn px-4 py-2 rounded-md bg-gray-800 hover:bg-sky-600 transition" data-filter="ml">ML</button>
+                    <button class="filter-btn px-4 py-2 rounded-md bg-gray-800 hover:bg-sky-600 transition" data-filter="ai">AI</button>
+                </div>
+                <!-- Project Grid -->
+                <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="project-card-wrapper reveal" data-category="web ai">
+                        <div class="project-card bg-[#0A192F] rounded-lg overflow-hidden p-6 border border-gray-800">
+                            <h3 class="text-xl font-bold mb-2 text-sky-300">Talk2Docs – Voice-to-Document Generator</h3>
+                            <p class="text-gray-400 mb-4 text-sm">A web tool that converts speech into structured documents like blogs and emails using Web Speech API and Flask.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Web Speech API</span>
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Flask</span>
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">OpenAI</span>
+                            </div>
+                            <div class="flex justify-end gap-4 mt-4">
+                                <a href="https://github.com/LokeshDasarla" target="_blank" class="hover:text-sky-400 transition">GitHub</a>
+                                <a href="#" class="hover:text-sky-400 transition">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                    <div class="project-card-wrapper reveal" data-category="ml">
+                        <div class="project-card bg-[#0A192F] rounded-lg overflow-hidden p-6 border border-gray-800">
+                            <h3 class="text-xl font-bold mb-2 text-sky-300">Word Guessing Game with NLP</h3>
+                            <p class="text-gray-400 mb-4 text-sm">A smart word guessing game using Python, Tkinter, and NLP for adaptive hint generation based on player input.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Python</span>
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">NLP</span>
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Tkinter</span>
+                            </div>
+                            <div class="flex justify-end gap-4 mt-4">
+                                <a href="https://github.com/LokeshDasarla" target="_blank" class="hover:text-sky-400 transition">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                    <div class="project-card-wrapper reveal" data-category="ml">
+                        <div class="project-card bg-[#0A192F] rounded-lg overflow-hidden p-6 border border-gray-800">
+                            <h3 class="text-xl font-bold mb-2 text-sky-300">Credit Card Fraud Detection</h3>
+                            <p class="text-gray-400 mb-4 text-sm">An ML model using Random Forest to detect fraudulent transactions, focusing on handling imbalanced data.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Python</span>
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Scikit-learn</span>
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Random Forest</span>
+                            </div>
+                            <div class="flex justify-end gap-4 mt-4">
+                                <a href="https://github.com/LokeshDasarla" target="_blank" class="hover:text-sky-400 transition">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Project Card 4 -->
+                    <div class="project-card-wrapper reveal" data-category="ai ml">
+                        <div class="project-card bg-[#0A192F] rounded-lg overflow-hidden p-6 border border-gray-800">
+                            <h3 class="text-xl font-bold mb-2 text-sky-300">Network Intrusion Detection System</h3>
+                            <p class="text-gray-400 mb-4 text-sm">Designed an NIDS using ML/DL models (Random Forest, CNN) to classify and detect malicious network activities.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Python</span>
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">CNN</span>
+                                <span class="tech-badge bg-gray-700 text-xs px-2 py-1 rounded">Cybersecurity</span>
+                            </div>
+                            <div class="flex justify-end gap-4 mt-4">
+                                <a href="https://github.com/LokeshDasarla" target="_blank" class="hover:text-sky-400 transition">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internship & Experience Section -->
+        <section id="experience" class="py-20 md:py-32 bg-[#0A192F]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold">Internship & Experience</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mt-4"></div>
+                </div>
+                <div class="relative max-w-2xl mx-auto">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-700"></div>
+                    <!-- Timeline Item 1 -->
+                    <div class="relative mb-12 reveal">
+                        <div class="absolute w-6 h-6 bg-sky-500 rounded-full left-1/2 transform -translate-x-1/2 mt-1.5"></div>
+                        <div class="md:ml-auto md:pl-16 md:w-1/2">
+                            <div class="bg-black p-6 rounded-lg shadow-lg border border-gray-800">
+                                <img src="https://placehold.co/100x40/FFFFFF/0A192F?text=Skilltimate" alt="Skilltimate Logo" class="company-logo mb-3 h-8">
+                                <span class="text-sm text-gray-400">May 2024 - Present</span>
+                                <h3 class="text-xl font-bold mt-1">AI & Deep Learning Intern</h3>
+                                <p class="text-gray-300 mt-2">Developed a Helmet Detection system using CNNs with TensorFlow and Keras. Gained experience in computer vision, Python, and deep learning workflows.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="relative mb-12 reveal">
+                        <div class="absolute w-6 h-6 bg-sky-500 rounded-full left-1/2 transform -translate-x-1/2 mt-1.5"></div>
+                        <div class="md:mr-auto md:pr-16 md:w-1/2 md:text-right">
+                            <div class="bg-black p-6 rounded-lg shadow-lg border border-gray-800">
+                                <img src="https://placehold.co/100x40/FFFFFF/0A192F?text=R2+Edu" alt="R2 Educational Services Logo" class="company-logo mb-3 h-8 md:ml-auto">
+                                <span class="text-sm text-gray-400">Jan 2024 - Mar 2024</span>
+                                <h3 class="text-xl font-bold mt-1">Software Development Intern</h3>
+                                <p class="text-gray-300 mt-2">Built a responsive web app to improve user experience. Optimized code for performance and collaborated on backend integration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section id="education" class="py-20 md:py-32 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold">Education</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mt-4"></div>
+                </div>
+                <div class="max-w-3xl mx-auto bg-[#0A192F] p-8 rounded-lg shadow-lg border border-gray-800 reveal">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/100x100/FFFFFF/0A192F?text=MREC" alt="MREC Logo" class="w-20 h-20 rounded-full mr-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-sky-300">Malla Reddy Engineering College</h3>
+                            <p class="text-gray-400">2022 – 2026</p>
+                        </div>
+                    </div>
+                    <p class="text-lg font-semibold">Bachelor of Technology in CSE (AI & ML)</p>
+                    <p class="text-lg text-gray-300">CGPA: <span class="font-bold text-white">8.69</span></p>
+                    <div class="mt-6">
+                        <h4 class="font-semibold text-lg mb-2">Honors & Achievements:</h4>
+                        <ul class="list-disc list-inside text-gray-400 space-y-1">
+                            <li>Certificate of Participation – VISHESH 2K23 Project Expo</li>
+                            <li>Active participation in ML Workshops and Hackathons</li>
+                            <li>Member of the Cyber Security Association</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 md:py-32 bg-[#0A192F]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold">Certifications & Achievements</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mt-4"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
+                    <div class="bg-black p-6 rounded-lg reveal border border-gray-800 hover:border-sky-500 transition-all">
+                        <p class="font-bold">Azure AI Fundamentals</p><p class="text-sm text-gray-400">Microsoft</p>
+                    </div>
+                    <div class="bg-black p-6 rounded-lg reveal border border-gray-800 hover:border-sky-500 transition-all">
+                        <p class="font-bold">Data Analytics Job Sim</p><p class="text-sm text-gray-400">Deloitte</p>
+                    </div>
+                    <div class="bg-black p-6 rounded-lg reveal border border-gray-800 hover:border-sky-500 transition-all">
+                        <p class="font-bold">GenAI Essentials</p><p class="text-sm text-gray-400">Microsoft & LinkedIn</p>
+                    </div>
+                    <div class="bg-black p-6 rounded-lg reveal border border-gray-800 hover:border-sky-500 transition-all">
+                        <p class="font-bold">Intro to Cyber Security</p><p class="text-sm text-gray-400">Cisco</p>
+                    </div>
+                     <div class="bg-black p-6 rounded-lg reveal border border-gray-800 hover:border-sky-500 transition-all">
+                        <p class="font-bold">Python Programming</p><p class="text-sm text-gray-400">Skilltimate</p>
+                    </div>
+                     <div class="bg-black p-6 rounded-lg reveal border border-gray-800 hover:border-sky-500 transition-all">
+                        <p class="font-bold">C Programming</p><p class="text-sm text-gray-400">Skilltimate</p>
+                    </div>
+                     <div class="bg-black p-6 rounded-lg reveal border border-gray-800 hover:border-sky-500 transition-all">
+                        <p class="font-bold">LeetCode Badges</p><p class="text-sm text-gray-400">Problem Solving</p>
+                    </div>
+                     <div class="bg-black p-6 rounded-lg reveal border border-gray-800 hover:border-sky-500 transition-all">
+                        <p class="font-bold">Project Expo</p><p class="text-sm text-gray-400">VISHESH 2K23</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold">Get In Touch</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mt-4"></div>
+                </div>
+                <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 bg-[#0A192F] p-8 rounded-lg shadow-lg border border-gray-800 reveal">
+                    <!-- Contact Form -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Send a Message</h3>
+                        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                            <!-- Replace with your Access Key -->
+                            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                            <div class="mb-4">
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Your Name</label>
+                                <input type="text" id="name" name="name" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 focus:ring-sky-500 focus:border-sky-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Your Email</label>
+                                <input type="email" id="email" name="email" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 focus:ring-sky-500 focus:border-sky-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Message</label>
+                                <textarea id="message" name="message" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-3 focus:ring-sky-500 focus:border-sky-500" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">Send Message</button>
+                            <p id="form-status" class="text-center mt-4"></p>
+                        </form>
+                    </div>
+                    <!-- Mini Mailbot -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Mini Mailbot</h3>
+                        <div id="mailbot" class="bg-gray-900 rounded-lg p-4 h-96 flex flex-col">
+                            <div id="chat-window" class="flex-grow overflow-y-auto space-y-4 pr-2">
+                                <!-- Bot Message -->
+                                <div class="flex items-start gap-2.5">
+                                    <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-700 bg-gray-800 rounded-e-xl rounded-es-xl">
+                                        <p class="text-sm font-normal text-white">Hi! I'm a mini-bot. Ask me about Lokesh's skills, projects, or how to contact him!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex">
+                                <input type="text" id="bot-input" class="w-full bg-gray-800 border border-gray-700 rounded-l-lg p-3 focus:ring-sky-500 focus:border-sky-500" placeholder="Ask a question...">
+                                <button id="bot-send" class="bg-sky-500 hover:bg-sky-600 text-white font-bold p-3 rounded-r-lg">&rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-900 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="flex justify-center gap-6 mb-4">
+                <a href="https://github.com/LokeshDasarla" target="_blank" class="transition transform hover:scale-125 hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/lokesh-dasarla" target="_blank" class="transition transform hover:scale-125 hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="https://www.instagram.com/i.amdasarla/" target="_blank" class="transition transform hover:scale-125 hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://leetcode.com/u/lokeshdasarla/" target="_blank" class="transition transform hover:scale-125 hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 5.844a1.374 1.374 0 0 0-.438.961v10.392a1.374 1.374 0 0 0 .438.961l5.405 5.405a1.374 1.374 0 0 0 .961.438h7.034a1.374 1.374 0 0 0 .961-.438l5.405-5.405a1.374 1.374 0 0 0 .438-.961V.438A1.374 1.374 0 0 0 20.517 0h-7.034ZM18.1 18.102l-4.617 4.617v-4.617h4.617Zm-5.405-1.828V22.69l-4.617-4.617h4.617Zm-5.405-4.526l-4.617 4.617v-4.617h4.617Zm0 1.828V18.1l-4.617-4.617h4.617Zm0-4.525V9.05l-4.617-4.617h4.617Zm0 1.828V13.57l-4.617-4.617h4.617Zm5.405 4.526l4.617-4.617v4.617h-4.617Zm0-1.828V13.57l4.617 4.617h-4.617Zm0-4.526V4.433l4.617 4.617h-4.617Zm0-1.828V.001l4.617 4.617h-4.617Z"/></svg>
+                </a>
+            </div>
+            <p>&copy; 2024 Dasarla Lokesh. All Rights Reserved.</p>
+            <p class="text-sm mt-2">Built with <span class="text-sky-400">&hearts;</span> and a lot of coffee.</p>
+        </div>
+    </footer>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- Particles.js Initialization ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
+                "opacity": { "value": 0.5, "random": false, "anim": { "enable": false } },
+                "size": { "value": 3, "random": true, "anim": { "enable": false } },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
+            },
+            "retina_detect": true
+        });
+
+        // --- Mobile Menu ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- Typewriter Effect ---
+        const typewriterElement = document.getElementById('typewriter');
+        const titles = ["I'm a Java Developer", "A Python Developer", "An AI & ML Enthusiast"];
+        let titleIndex = 0;
+        let charIndex = 0;
+        
+        function type() {
+            if (charIndex < titles[titleIndex].length) {
+                typewriterElement.textContent += titles[titleIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typewriterElement.textContent = titles[titleIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                titleIndex = (titleIndex + 1) % titles.length;
+                setTimeout(type, 500);
+            }
+        }
+        type();
+
+        // --- Smooth Scrolling & Scrollspy ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    // Remove active from all nav links
+                    document.querySelectorAll('nav a.nav-link').forEach(link => link.classList.remove('active'));
+                    // Add active to the correct link
+                    const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Reveal on Scroll ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+        
+        // --- Project Filtering ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card-wrapper');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('bg-sky-600', 'active'));
+                btn.classList.add('bg-sky-600', 'active');
+                
+                const filter = btn.dataset.filter;
+                
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category.includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // --- Contact Form Submission (using Web3Forms) ---
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        
+        // IMPORTANT: Go to https://web3forms.com/, get your access key, and replace "YOUR_ACCESS_KEY_HERE"
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            formStatus.innerHTML = "Sending...";
+
+            fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        formStatus.innerHTML = "Form submitted successfully!";
+                        formStatus.classList.add('text-green-500');
+                    } else {
+                        console.log(response);
+                        formStatus.innerHTML = json.message;
+                        formStatus.classList.add('text-red-500');
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    formStatus.innerHTML = "Something went wrong!";
+                    formStatus.classList.add('text-red-500');
+                })
+                .then(function() {
+                    form.reset();
+                    setTimeout(() => {
+                        formStatus.innerHTML = "";
+                        formStatus.classList.remove('text-green-500', 'text-red-500');
+                    }, 5000);
+                });
+        });
+
+        // --- Mini Mailbot Logic ---
+        const chatWindow = document.getElementById('chat-window');
+        const botInput = document.getElementById('bot-input');
+        const botSendBtn = document.getElementById('bot-send');
+
+        const botResponses = {
+            "skills": "Lokesh is skilled in Java, Python, C++, JavaScript, React, Spring Boot, MySQL, Git, and more. Check out the 'Skills' section for details!",
+            "projects": "He has worked on several projects, including a voice-to-document generator and a credit card fraud detection system. You can see them in the 'Projects' section.",
+            "contact": "You can contact Lokesh by filling out the form on this page or emailing him at lokeshdasarla123@gmail.com.",
+            "experience": "Lokesh has interned as a Software Developer and an AI & Deep Learning Intern. You can find more details in the 'Experience' section.",
+            "hello": "Hi there! How can I help you today?",
+            "default": "Thanks for your question! For more detailed inquiries, please use the contact form or email Lokesh directly."
+        };
+
+        function addBotMessage(message) {
+            const botMessage = `
+                <div class="flex items-start gap-2.5">
+                    <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-700 bg-gray-800 rounded-e-xl rounded-es-xl">
+                        <p class="text-sm font-normal text-white">${message}</p>
+                    </div>
+                </div>`;
+            chatWindow.innerHTML += botMessage;
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function addUserMessage(message) {
+            const userMessage = `
+                <div class="flex items-start gap-2.5 justify-end">
+                    <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-700 bg-sky-600 rounded-s-xl rounded-ee-xl">
+                        <p class="text-sm font-normal text-white">${message}</p>
+                    </div>
+                </div>`;
+            chatWindow.innerHTML += userMessage;
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function handleBotQuery() {
+            const query = botInput.value.toLowerCase().trim();
+            if (!query) return;
+
+            addUserMessage(botInput.value);
+            botInput.value = '';
+
+            let response = botResponses.default;
+            if (query.includes('skill')) {
+                response = botResponses.skills;
+            } else if (query.includes('project')) {
+                response = botResponses.projects;
+            } else if (query.includes('contact') || query.includes('email')) {
+                response = botResponses.contact;
+            } else if (query.includes('experience') || query.includes('intern')) {
+                response = botResponses.experience;
+            } else if (query.includes('hello') || query.includes('hi')) {
+                response = botResponses.hello;
+            }
+            
+            setTimeout(() => addBotMessage(response), 1000);
+        }
+
+        botSendBtn.addEventListener('click', handleBotQuery);
+        botInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleBotQuery();
+            }
+        });
+    });
+    </script>
+</body>
+</html>
